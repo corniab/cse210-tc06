@@ -1,3 +1,8 @@
+from game.console import Console
+from game.roster import Roster
+from game.player import Player
+
+
 class Director:
     """A code template for a person who directs the game. The responsibility of
     this class of objects is to control the sequence of play.
@@ -15,6 +20,9 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        self._console = Console()
+        self._keep_playing = True
+        self._roster = Roster()
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -34,27 +42,43 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        for n in range(2):
+            name = self._console.read(f"Enter a name for player {n + 1}: ")
+            player = Player(name)
+            self._roster.add_player(player)
 
     def _get_inputs(self):
-        """Gets the inputs at the beginning of each round of play. In this case,
-        that means getting the move from the current player.
+        """Gets the inputs at the beginning of each round of play.
 
         Args:
             self (Director): An instance of Director.
         """
+        # Display game board.
+
+        # Ask for next player's guess.
+
+        # Instantiate another class to store the guess
+
+        # Assign the guess to the player
 
     def _do_updates(self):
-        """Updates the important game information for each round of play. In
-        this case, that means updating the board with the current move.
+        """Updates the important game information for each round of play.
 
         Args:
             self (Director): An instance of Director.
         """
+        # Get the current player
+
+        # Get their move
+
+        # Apply the move to the board
 
     def _do_outputs(self):
-        """Outputs the important game information for each round of play. In
-        this case, that means checking if there are stones left and declaring the winner.
+        """Outputs the important game information for each round of play.
 
         Args:
             self (Director): An instance of Director.
         """
+        # Check if there is a winning combination on the board
+
+        # If there is no winning combination get the next player
