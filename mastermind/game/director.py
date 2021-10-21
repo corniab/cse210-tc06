@@ -54,9 +54,12 @@ class Director:
             self (Director): An instance of Director.
         """
         # Display game board.
-
+        board = ('board')#self.-boardclass.displayboard-()
+        self._console.write(board)
         # Ask for next player's guess.
-
+        player = self._roster.get_current()
+        self._console.write(f"{player.get_name()}'s turn:")
+        guess = self._console.read_number('What is your guess? ')
         # Instantiate another class to store the guess
 
         # Assign the guess to the player
