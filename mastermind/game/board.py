@@ -5,7 +5,7 @@ class Board:
     The responsibility of this class of objects is to keep track of the pieces
     in play as the secret code is revealed.
     
-    Stereotype:
+    Stereotype: 
         Service Provider, Interfacer
 
     Attributes:
@@ -31,6 +31,10 @@ class Board:
         guess = "----"
         hint = "****"
         self._items[name] = [code, guess, hint]
+    
+    def display_board(self):
+        #returns a printable board from the prepare set up(string)
+        pass
         
     def _create_hint(self, code, guess):
         """Generates a hint based on the given code and guess.
