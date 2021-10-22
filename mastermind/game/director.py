@@ -1,6 +1,8 @@
 from game.console import Console
 from game.roster import Roster
 from game.player import Player
+from game.board import Board
+from game.guess import Guess
 
 
 class Director:
@@ -23,6 +25,8 @@ class Director:
         self._console = Console()
         self._keep_playing = True
         self._roster = Roster()
+        self._board = Board()
+        self._guess = Guess()
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -54,7 +58,7 @@ class Director:
             self (Director): An instance of Director.
         """
         # Display game board.
-        board = ('board')#self.-boardclass.displayboard-()
+        board = self._board.display_board()
         self._console.write(board)
         # Ask for next player's guess.
         player = self._roster.get_current()
