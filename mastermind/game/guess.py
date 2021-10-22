@@ -8,7 +8,7 @@ class Guess:
         _guess(integer): The players four digit guess
     '''
 
-    def __init__(self):
+    def __init__(self, guess):
         '''
         The class constructor.
         
@@ -16,10 +16,10 @@ class Guess:
             self (Guess): an instance of Guess.
         
         '''
-        #self._guess = guess
+        self._guess = guess
     
 
-    def get_guess(self):
+    def get_guess(self, guess):
         '''
         Recieve the players four digit guess
         
@@ -29,5 +29,5 @@ class Guess:
         Returns:
             Players guess
         '''
-
+        
         return self._guess 
