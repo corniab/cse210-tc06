@@ -81,7 +81,7 @@ class Director:
         move = player.get_move()
         # Apply the move to the board
         self._board.apply(move)
-        
+
     def _do_outputs(self):
         """Outputs the important game information for each round of play.
 
@@ -89,5 +89,11 @@ class Director:
             self (Director): An instance of Director.
         """
         # Check if there is a winning combination on the board
-
-        # If there is no winning combination get the next player
+        if self._board.is_guessed():
+            winner = self.roster.get_current()
+            name = winner.get_name()
+            print(f"\n{name} won!")
+            self._keep_playing = False
+            # If there is no winning combination get the next player
+        else:
+            self._roster.next_player()

@@ -39,6 +39,11 @@ class Board:
     def apply(self, move):
         #applies guess to board
         pass
+
+    def is_guessed(self):
+        # check to see if player guessed the answer
+        #return boolian
+        return False
         
     def _create_hint(self, code, guess):
         """Generates a hint based on the given code and guess.
