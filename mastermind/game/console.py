@@ -31,7 +31,22 @@ class Console:
         Returns:
             integer: The user's input as an integer.
         """
-        return int(input(prompt))
+        response = ""
+
+        # Initialize loop to validate input.
+        while not isinstance(response, int):
+
+            # Get input from user.
+            response = input(prompt)
+
+            # If the response can be converted to an int,
+            # then return the response.
+            try:
+                response = int(response)
+                return response
+            except:
+                # Tell the user to enter an integer.
+                print("\nEnter an integer.")
 
     def write(self, text):
         """Displays the given text on the screen.
