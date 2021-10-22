@@ -35,6 +35,10 @@ class Board:
     def display_board(self):
         #returns a printable board from the prepare set up(string)
         pass
+
+    def apply(self, move):
+        #applies guess to board
+        pass
         
     def _create_hint(self, code, guess):
         """Generates a hint based on the given code and guess.
