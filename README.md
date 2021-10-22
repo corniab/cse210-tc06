@@ -47,7 +47,7 @@ root                    (project root folder)
 ---
 
 - Morgan
-- Mitchell
+- Mitchell - bal20049@byui.edu
 - Heidi
 - Daniel
 - Ben - bencornia@byui.edu
