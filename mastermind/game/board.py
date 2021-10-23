@@ -38,12 +38,31 @@ class Board:
             self.list.append(item)
 
     def display_board(self, name):
+        """Converts the board data to its string representation and returns it to 
+        the caller.
+
+        Args:
+            self (Board): an instance of Board.
+
+        Returns:
+            string: A printable board from the prepare set up.
+        """
         # returns a printable board from the prepare set up(string)
         
         pboard = (f'Player {name}: {self.list[0]}, {self.list[1]}, {self.list[2]} ')
         return pboard
 
     def apply(self, guess):
+        """Applies a move to the playing surface. In this case, that means displaying
+        guessed codes for each player with their associated hints.
+
+        Args:
+            self (Board): an instance of Board.
+            guess (Guess): the guess to apply.
+
+        Returns: 
+            string: Hint given according to guess provided by player(s).
+        """
         # self.list.pop(1)
         # self.list.insert(1, guess.get_guess(guess))
         
@@ -72,10 +91,17 @@ class Board:
         #        hint += '*'
         # return self.list[0][2]
 
-    def is_guessed(self):
+    def is_guessed(self, apply):
+        """Determines if the code has been correctly identified.
+
+        Args:
+            self (Board): an instance of Board.
+        
+        Returns: 
+            boolean: True if the code has been identified; false if otherwise.
+        """
         # check to see if player guessed the answer
         # return boolean
-        
         return False
 
     def _create_hint(self,  guess):
