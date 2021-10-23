@@ -11,14 +11,15 @@ class Board:
     Attributes:
         _items (list): The player's name. (Tied to their associated code, guess, hint.)
     """    
-    def __init__(self):
+    def __init__(self, player):
         """The class constructor. Declares and initializes instance attributes
         with their default values. 
         
         Args:
             self (Board): an instance of Board.
         """
-        self._items = []
+        self._items = {}
+        self.Board = self.prepare(player)
 
     def prepare(self, player):
         """Sets up the board with an entry for each player.
@@ -34,7 +35,8 @@ class Board:
     
     def display_board(self):
         #returns a printable board from the prepare set up(string)
-        pass
+        
+        return str(self.items)
 
     def apply(self, move):
         #applies guess to board
@@ -42,7 +44,7 @@ class Board:
 
     def is_guessed(self):
         # check to see if player guessed the answer
-        #return boolian
+        #return boolean
         return False
         
     def _create_hint(self, code, guess):

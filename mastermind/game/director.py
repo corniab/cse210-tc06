@@ -27,6 +27,7 @@ class Director:
         self._roster = Roster()
         self._board = Board()
         self._guess = None
+        self._player = Player
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -50,6 +51,7 @@ class Director:
             name = self._console.read(f"Enter a name for player {n + 1}: ")
             player = Player(name)
             self._roster.add_player(player)
+
 
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play.
