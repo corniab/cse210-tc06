@@ -23,7 +23,7 @@ class Director:
         self._roster = Roster()
         self._board = Board()
         self._guess = None
-        self._player = Player
+        
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -64,11 +64,11 @@ class Director:
 
         # Ask for next player's guess.
         self._console.write(f"{name}'s turn:")
-        guess = self._console.read_number("What is your guess? ")
+        pinput = self._console.read_number("What is your guess? ")
         # Instantiate another class to store the guess
-        move = Guess(guess)
+        guess = Guess(pinput)
         # Assign the guess to the player
-        player.set_move(move)
+        player.set_move(guess)
 
     def _do_updates(self):
         """Updates the important game information for each round of play.
@@ -78,9 +78,10 @@ class Director:
         # Get the current player
         player = self._roster.get_current()
         # Get their move
-        move = player.get_move()
+        guess = player.get_move()
         # Apply the move to the board
-        self._board.apply(move)
+        print(self._board.apply(guess))
+        
 
     def _do_outputs(self):
         """Outputs the important game information for each round of play.

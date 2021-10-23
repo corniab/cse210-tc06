@@ -10,7 +10,7 @@ class Board:
         Service Provider, Interfacer
 
     Attributes:
-        _items (list): The player's name. (Tied to their associated code, guess, hint.)
+        _items (self.list): The player's name. (Tied to their associated code, guess, hint.)
     """
 
     def __init__(self):
@@ -22,6 +22,7 @@ class Board:
         """
         self._items = {}
         self.code = str(random.randint(1000, 10000))
+        self.list = []
 
     def prepare(self, name):
         """Sets up the board with an entry for each player.
@@ -33,25 +34,42 @@ class Board:
         guess = "----"
         hint = "****"
         self._items[name] = [self.code, guess, hint]
+        for item in self._items[name]:
+            self.list.append(item)
 
     def display_board(self, name):
         # returns a printable board from the prepare set up(string)
-        list = []
-        for item in self._items[name]:
-            list.append(item)
         
-        pboard = (f'Player {name}: {list[0]}, {list[1]}, {list[2]} ')
+        
+        
+        pboard = (f'Player {name}: {self.list[0]}, {self.list[1]}, {self.list[2]} ')
         return pboard
 
     def apply(self, guess):
-        pass
+        self.list.pop(1)
+        self.list.insert(1, guess.get_guess(guess))
+        
+        hint = ''
+        place = -1
+        #for num in self.list[0]:
+        #    place += 1
+        #    if num == self.list[1][place]:
+        #        hint += 'X'
+        #    elif num in self.list[1]:
+        #        hint += 'O'
+        #    else:
+        #        hint += '*'
+        return self.list[0][2]
+
+
+
 
     def is_guessed(self):
         # check to see if player guessed the answer
         # return boolean
         return False
 
-    def _create_hint(self, code, guess):
+    def _create_hint(self,  guess):
         """Generates a hint based on the given code and guess.
 
         Args:
@@ -62,12 +80,14 @@ class Board:
         Returns:
             string: A hint in the form [xxxx]
         """
+        
         hint = ""
         for index, letter in enumerate(guess):
-            if code[index] == letter:
+            if self.list[0][index] == letter:
                 hint += "x"
             elif letter in code:
                 hint += "o"
             else:
                 hint += "*"
         return hint
+
