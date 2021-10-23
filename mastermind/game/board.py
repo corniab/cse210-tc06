@@ -21,6 +21,7 @@ class Board:
             self (Board): an instance of Board.
         """
         self._items = {}
+        self.code = str(random.randint(1000, 10000))
 
     def prepare(self, name):
         """Sets up the board with an entry for each player.
@@ -28,15 +29,19 @@ class Board:
         Args:
             self (Board): an instance of Board.
         """
-        code = str(random.randint(1000, 10000))
+        
         guess = "----"
         hint = "****"
-        self._items[name] = [code, guess, hint]
+        self._items[name] = [self.code, guess, hint]
 
     def display_board(self, name):
         # returns a printable board from the prepare set up(string)
-
-        return self._items[name]
+        list = []
+        for item in self._items[name]:
+            list.append(item)
+        
+        pboard = (f'Player {name}: {list[0]}, {list[1]}, {list[2]} ')
+        return pboard
 
     def apply(self, move):
         # applies guess to board
