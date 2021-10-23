@@ -22,13 +22,12 @@ class Board:
         """
         self._items = {}
 
-    def prepare(self, player):
+    def prepare(self, name):
         """Sets up the board with an entry for each player.
 
         Args:
             self (Board): an instance of Board.
         """
-        name = player.get_name()
         code = str(random.randint(1000, 10000))
         guess = "----"
         hint = "****"
@@ -37,7 +36,7 @@ class Board:
     def display_board(self, name):
         # returns a printable board from the prepare set up(string)
 
-        return self._items[name]
+        print(self._items[name])
 
     def apply(self, move):
         # applies guess to board

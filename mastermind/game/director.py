@@ -63,9 +63,9 @@ class Director:
         name = player.get_name()
 
         # Display game board.
-        board = self._board.display_board(name)
+        self._board.display_board(name)
 
-        self._console.write(board)
+        # self._console.write(board)
 
         # Ask for next player's guess.
         self._console.write(f"{name}'s turn:")
