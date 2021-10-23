@@ -36,7 +36,7 @@ class Board:
     def display_board(self, name):
         # returns a printable board from the prepare set up(string)
 
-        print(self._items[name])
+        return self._items[name]
 
     def apply(self, move):
         # applies guess to board
