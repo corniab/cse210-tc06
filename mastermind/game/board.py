@@ -30,7 +30,7 @@ class Board:
         Args:
             self (Board): an instance of Board.
         """
-        
+        # self.code = str(random.randint(1000, 10000))
         guess = "----"
         hint = "****"
         self._items[name] = [self.code, guess, hint]
@@ -40,17 +40,28 @@ class Board:
     def display_board(self, name):
         # returns a printable board from the prepare set up(string)
         
-        
-        
         pboard = (f'Player {name}: {self.list[0]}, {self.list[1]}, {self.list[2]} ')
         return pboard
 
     def apply(self, guess):
-        self.list.pop(1)
-        self.list.insert(1, guess.get_guess(guess))
+        # self.list.pop(1)
+        # self.list.insert(1, guess.get_guess(guess))
         
         hint = ''
-        place = -1
+        guess_string = str(guess._guess)
+        # place = -1
+        # for digit in guess_string:
+        #     for answer in self.code:
+        for x in range(4):
+            digit = guess_string[x]
+            answer = self.code[x]
+            if answer == digit:
+                hint += 'x'
+            elif digit in self.code:
+                hint += 'o'
+            else:
+                hint += '*'
+        return hint
         #for num in self.list[0]:
         #    place += 1
         #    if num == self.list[1][place]:
@@ -59,14 +70,12 @@ class Board:
         #        hint += 'O'
         #    else:
         #        hint += '*'
-        return self.list[0][2]
-
-
-
+        # return self.list[0][2]
 
     def is_guessed(self):
         # check to see if player guessed the answer
         # return boolean
+        
         return False
 
     def _create_hint(self,  guess):
