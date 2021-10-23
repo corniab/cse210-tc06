@@ -43,8 +43,7 @@ class Board:
         pboard = (f'Player {name}: {list[0]}, {list[1]}, {list[2]} ')
         return pboard
 
-    def apply(self, move):
-        # applies guess to board
+    def apply(self, guess):
         pass
 
     def is_guessed(self):
