@@ -8,17 +8,13 @@ from game.guess import Guess
 class Director:
     """A code template for a person who directs the game. The responsibility of
     this class of objects is to control the sequence of play.
-
     Stereotype:
         Controller
-
     Attributes:
-
     """
 
     def __init__(self):
         """The class constructor.
-
         Args:
             self (Director): an instance of Director.
         """
@@ -27,10 +23,10 @@ class Director:
         self._roster = Roster()
         self._board = Board()
         self._guess = None
+        self._player = Player
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
-
         Args:
             self (Director): an instance of Director.
         """
@@ -42,7 +38,6 @@ class Director:
 
     def _prepare_game(self):
         """Prepares the game before it begins. In this case, that means getting the player names and adding them to the roster.
-
         Args:
             self (Director): An instance of Director.
         """
@@ -50,21 +45,26 @@ class Director:
             name = self._console.read(f"Enter a name for player {n + 1}: ")
             player = Player(name)
             self._roster.add_player(player)
-            
 
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play.
-
         Args:
             self (Director): An instance of Director.
         """
-        # Display game board.
-        board = self._board.display_board()
-        self._console.write(board)
-        # Ask for next player's guess.
+        # get current player
         player = self._roster.get_current()
-        self._console.write(f"{player.get_name()}'s turn:")
-        guess = self._console.read_number('What is your guess? ')
+        name = player.get_name()
+
+        # prepare board
+        self._board.prepare(name)
+
+        # Display game board.
+        board = self._board.display_board(name)
+        self._console.write(board)
+
+        # Ask for next player's guess.
+        self._console.write(f"{name}'s turn:")
+        guess = self._console.read_number("What is your guess? ")
         # Instantiate another class to store the guess
         move = Guess(guess)
         # Assign the guess to the player
@@ -72,7 +72,6 @@ class Director:
 
     def _do_updates(self):
         """Updates the important game information for each round of play.
-
         Args:
             self (Director): An instance of Director.
         """
@@ -85,7 +84,6 @@ class Director:
 
     def _do_outputs(self):
         """Outputs the important game information for each round of play.
-
         Args:
             self (Director): An instance of Director.
         """
