@@ -1,52 +1,52 @@
 import random
 
+
 class Board:
-    """A code template for the game board, or designated playing surface. 
+    """A code template for the game board, or designated playing surface.
     The responsibility of this class of objects is to keep track of the pieces
     in play as the secret code is revealed.
-    
-    Stereotype: 
+
+    Stereotype:
         Service Provider, Interfacer
 
     Attributes:
         _items (list): The player's name. (Tied to their associated code, guess, hint.)
-    """    
-    def __init__(self, player):
+    """
+
+    def __init__(self):
         """The class constructor. Declares and initializes instance attributes
-        with their default values. 
-        
+        with their default values.
+
         Args:
             self (Board): an instance of Board.
         """
         self._items = {}
-        self.Board = self.prepare(player)
 
-    def prepare(self, player):
+    def prepare(self, name):
         """Sets up the board with an entry for each player.
-        
+
         Args:
             self (Board): an instance of Board.
         """
-        name = player.get_name()
         code = str(random.randint(1000, 10000))
         guess = "----"
         hint = "****"
         self._items[name] = [code, guess, hint]
-    
-    def display_board(self):
-        #returns a printable board from the prepare set up(string)
-        
-        return str(self.items)
+
+    def display_board(self, name):
+        # returns a printable board from the prepare set up(string)
+
+        return self._items[name]
 
     def apply(self, move):
-        #applies guess to board
+        # applies guess to board
         pass
 
     def is_guessed(self):
         # check to see if player guessed the answer
-        #return boolean
+        # return boolean
         return False
-        
+
     def _create_hint(self, code, guess):
         """Generates a hint based on the given code and guess.
 
@@ -57,7 +57,7 @@ class Board:
 
         Returns:
             string: A hint in the form [xxxx]
-        """ 
+        """
         hint = ""
         for index, letter in enumerate(guess):
             if code[index] == letter:

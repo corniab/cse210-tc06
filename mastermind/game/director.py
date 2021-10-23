@@ -52,20 +52,26 @@ class Director:
             player = Player(name)
             self._roster.add_player(player)
 
-
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play.
 
         Args:
             self (Director): An instance of Director.
         """
-        # Display game board.
-        board = self._board.display_board()
-        self._console.write(board)
-        # Ask for next player's guess.
+        # get current player
         player = self._roster.get_current()
-        self._console.write(f"{player.get_name()}'s turn:")
-        guess = self._console.read_number('What is your guess? ')
+        name = player.get_name()
+
+        # prepare board
+        self._board.prepare(name)
+
+        # Display game board.
+        board = self._board.display_board(name)
+        self._console.write(board)
+
+        # Ask for next player's guess.
+        self._console.write(f"{name}'s turn:")
+        guess = self._console.read_number("What is your guess? ")
         # Instantiate another class to store the guess
         move = Guess(guess)
         # Assign the guess to the player
