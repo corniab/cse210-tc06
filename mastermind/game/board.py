@@ -48,18 +48,23 @@ class Board:
     def apply(self, guess):
         self.list.pop(1)
         self.list.insert(1, guess.get_guess(guess))
-        
+
+        #this code sometimes works to generate hint
+        p = str(self.list[1])
+        ansr = str(self.list[0])
         hint = ''
         place = -1
-        #for num in self.list[0]:
-        #    place += 1
-        #    if num == self.list[1][place]:
-        #        hint += 'X'
-        #    elif num in self.list[1]:
-        #        hint += 'O'
-        #    else:
-        #        hint += '*'
-        return self.list[0][2]
+        for num in ansr:
+            place += 1
+            if num == p[place]:
+                hint += 'X'
+            elif num == p[0] or num == p[1] or num == p[2] or num == p[3]:
+                hint += 'O'
+            elif num != p[0] or num != p[1] or num != p[2] or num != p[3]:
+                hint += '*'
+        self.list.pop(2)
+        self.list.insert(2,hint)
+        
 
 
 
@@ -80,7 +85,7 @@ class Board:
         Returns:
             string: A hint in the form [xxxx]
         """
-        
+        '''
         hint = ""
         for index, letter in enumerate(guess):
             if self.list[0][index] == letter:
@@ -89,5 +94,5 @@ class Board:
                 hint += "o"
             else:
                 hint += "*"
-        return hint
+        return hint'''
 
