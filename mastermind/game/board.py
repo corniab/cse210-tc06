@@ -63,8 +63,10 @@ class Board:
     def apply(self, player):
         hint = ''
         name = player.get_name()
-        guess_string = str(player.get_move())
+        guess_string = str(player.get_move().get_guess())
+
         for x in range(4):
+            print(self.code)
             digit = guess_string[x]
             answer = self.code[x]
             if answer == digit:
@@ -73,6 +75,7 @@ class Board:
                 hint += 'o'
             else:
                 hint += '*' 
+
         self._items[name][2] = hint
 
     def is_guessed(self):

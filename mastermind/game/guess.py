@@ -19,7 +19,7 @@ class Guess:
         self._guess = guess
     
 
-    def get_guess(self, guess):
+    def get_guess(self):
         '''
         Recieve the players four digit guess
         
