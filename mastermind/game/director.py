@@ -73,13 +73,15 @@ class Director:
         # Assign the guess to the player
         player.set_move(guess)
 
-        self._board._create_hint(guess)
+        
 
     def _do_updates(self):
         """Updates the important game information for each round of play.
         Args:
             self (Director): An instance of Director.
         """
+
+        
         # Get the current player
         player = self._roster.get_current()
         # Get their move
