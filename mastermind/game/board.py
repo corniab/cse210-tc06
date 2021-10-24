@@ -20,28 +20,45 @@ class Board:
         Args:
             self (Board): an instance of Board.
         """
+        
         self._items = {}
-        self.code = str(random.randint(1000, 10000))
-        self.list = []
+        
+    
 
-    def prepare(self, name):
+    def _prepare(self, player):
         """Sets up the board with an entry for each player.
-
+        
         Args:
             self (Board): an instance of Board.
+            player (string): show the player's name
         """
-        # self.code = str(random.randint(1000, 10000))
+
+        name = player.get_name()
+        code = str(random.randint(1000, 10000))
         guess = "----"
         hint = "****"
-        self._items[name] = [self.code, guess, hint]
-        for item in self._items[name]:
-            self.list.append(item)
+        self._items[name] = [code, guess, hint]
 
-    def display_board(self, name):
-        # returns a printable board from the prepare set up(string)
         
-        pboard = (f'Player {name}: {self.list[0]}, {self.list[1]}, {self.list[2]} ')
-        return pboard
+
+    def display_board(self, players):
+        # returns a printable board from the prepare set up(string)
+
+        '''
+        Args:
+            players (string): show the names of both players
+        Return:
+            string: board displayed as a list and properly formatted
+        '''
+        #print(players)
+        
+        
+        board_display = ('\n--------------------')
+        for player in players:
+            board_display += (f'\nPlayer {player}:') # {self._items[player][1]}, {self._items[player][2]}')
+        board_display += '\n--------------------'
+
+        return board_display
 
     def apply(self, guess):
         # self.list.pop(1)
@@ -72,31 +89,11 @@ class Board:
         #        hint += '*'
         # return self.list[0][2]
 
+
     def is_guessed(self):
         # check to see if player guessed the answer
         # return boolean
         
         return False
-
-    def _create_hint(self,  guess):
-        """Generates a hint based on the given code and guess.
-
-        Args:
-            self (Board): An instance of Board.
-            code (string): The code to compare with.
-            guess (string): The guess that was made.
-
-        Returns:
-            string: A hint in the form [xxxx]
-        """
-        
-        hint = ""
-        for index, letter in enumerate(guess):
-            if self.list[0][index] == letter:
-                hint += "x"
-            elif letter in code:
-                hint += "o"
-            else:
-                hint += "*"
-        return hint
-
+    
+   
