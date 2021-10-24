@@ -45,6 +45,9 @@ class Director:
             name = self._console.read(f"Enter a name for player {n + 1}: ")
             player = Player(name)
             self._roster.add_player(player)
+            self._board._prepare(player)
+            
+            
 
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play.
@@ -56,19 +59,21 @@ class Director:
         name = player.get_name()
 
         # prepare board
-        self._board.prepare(name)
+        self._console.write(self._board.display_board(self._roster.players))
 
         # Display game board.
-        board = self._board.display_board(name)
-        self._console.write(board)
+        #board = self._board.display_board(name)
+        #self._console.write(board)
 
         # Ask for next player's guess.
         self._console.write(f"{name}'s turn:")
-        pinput = self._console.read_number("What is your guess? ")
+        input = self._console.read("What is your guess? ")
         # Instantiate another class to store the guess
-        guess = Guess(pinput)
+        guess = Guess(input)
         # Assign the guess to the player
         player.set_move(guess)
+
+        self._board._create_hint(guess)
 
     def _do_updates(self):
         """Updates the important game information for each round of play.
@@ -78,9 +83,14 @@ class Director:
         # Get the current player
         player = self._roster.get_current()
         # Get their move
-        guess = player.get_move()
+        self.guess = player.get_move()
         # Apply the move to the board
-        print(self._board.apply(guess))
+
+        #self._board._create_hint(self.guess)
+
+        #player = self._roster.get_current()
+        #move = player.get_move()
+        #self._board.apply(move)
         
 
     def _do_outputs(self):
@@ -88,6 +98,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        
         # Check if there is a winning combination on the board
         if self._board.is_guessed():
             winner = self.roster.get_current()
