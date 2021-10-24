@@ -81,6 +81,11 @@ class Director:
             self (Director): An instance of Director.
         """
 
+        #code = self._board.items[self._roster._current_player()][0]
+
+        self._board._create_hint(self._guess.guess)
+        
+        
         
         # Get the current player
         player = self._roster.get_current()
