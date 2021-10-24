@@ -30,6 +30,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        print(self._board.code)
         self._prepare_game()
         while self._keep_playing:
             self._get_inputs()
@@ -61,15 +62,13 @@ class Director:
         # prepare board
         self._console.write(self._board.display_board())
 
-        # Display game board.
-        #board = self._board.display_board(name)
-        #self._console.write(board)
-
         # Ask for next player's guess.
         self._console.write(f"{name}'s turn:")
         input = self._console.read("What is your guess? ")
+
         # Instantiate another class to store the guess
         guess = Guess(input)
+
         # Assign the guess to the player
         player.set_move(guess)
 
@@ -91,11 +90,14 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+
+        player = self._roster.get_current()
+        move = player.get_move().get_guess()
+        name = player.get_name()
+
         
         # Check if there is a winning combination on the board
-        if self._board.is_guessed():
-            winner = self.roster.get_current()
-            name = winner.get_name()
+        if self._board.is_guessed(move):
             print(f"\n{name} won!")
             self._keep_playing = False
             # If there is no winning combination get the next player
