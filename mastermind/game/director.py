@@ -3,6 +3,7 @@ from game.roster import Roster
 from game.player import Player
 from game.board import Board
 from game.guess import Guess
+from game.colors import Colors
 
 
 class Director:
@@ -58,12 +59,16 @@ class Director:
         # get current player
         player = self._roster.get_current()
         name = player.get_name()
+        player_name = Colors(name)
+        
+        
+
 
         # prepare board
         self._console.write(self._board.display_board())
 
         # Ask for next player's guess.
-        self._console.write(f"{name}'s turn:")
+        self._console.write(f"{player_name.get_name()}'s turn:")
         input = self._console.read("What is your guess? ")
 
         # Instantiate another class to store the guess

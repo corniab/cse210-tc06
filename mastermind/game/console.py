@@ -1,3 +1,5 @@
+from colorama import init, Fore, Back, Style
+
 class Console:
     """A code template for a computer console. The responsibility of this
     class of objects is to get text or numerical input and display text output.
@@ -19,7 +21,7 @@ class Console:
         Returns:
             string: The user's input as text.
         """
-        return input(prompt)
+        return input(Fore.LIGHTGREEN_EX + Style.BRIGHT + prompt)
 
     def read_number(self, prompt):
         """Gets numerical input from the user through the screen.
@@ -55,4 +57,4 @@ class Console:
             self (Screen): An instance of Screen.
             text (string): The text to display.
         """
-        print(text)
+        print(Fore.BLUE + Style.DIM + text)
