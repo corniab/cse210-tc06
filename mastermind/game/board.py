@@ -42,16 +42,16 @@ class Board:
         
 
     def display_board(self):
-        # returns a printable board from the prepare set up(string)
+        """Sets up the board with two players and a record of their guesses and the 
+        associated hints.
 
-        '''
         Args:
             players (string): show the names of both players
+
         Return:
             string: board displayed as a list and properly formatted
-        '''
+        """
         #print(players)
-        
         
         board_display = ('\n--------------------')
         for name, values in self._items.items():
@@ -61,6 +61,13 @@ class Board:
         return board_display
         
     def apply(self, player):
+        """Applies a move to the playing surface. In this case, that means displaying 
+        player's guesses and the associated hints.
+
+        Args:
+            self (Board): an instance of Board.
+            player (Player): the active players.
+        """
         hint = ''
         name = player.get_name()
         guess_string = str(player.get_move().get_guess())
@@ -78,8 +85,15 @@ class Board:
         self._items[name][2] = hint
 
     def is_guessed(self, move):
-        
+        """Determines if the code has been figured out.
 
+        Args:
+            self (Board): an instance of Board.
+            move (Move): the move to apply.
+        
+        Returns: 
+            boolean: True if the code has been correctly deciphered; false if otherwise.
+        """
         if move == self.code:
             return True
         else:
