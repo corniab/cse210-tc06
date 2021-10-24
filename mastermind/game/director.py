@@ -59,7 +59,7 @@ class Director:
         name = player.get_name()
 
         # prepare board
-        self._console.write(self._board.display_board(self._roster.players))
+        self._console.write(self._board.display_board())
 
         # Display game board.
         #board = self._board.display_board(name)
@@ -80,24 +80,10 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-
-        #code = self._board.items[self._roster._current_player()][0]
-
-        self._board._create_hint(self._guess.guess)
-        
-        
-        
         # Get the current player
         player = self._roster.get_current()
-        # Get their move
-        self.guess = player.get_move()
-        # Apply the move to the board
-
-        #self._board._create_hint(self.guess)
-
-        #player = self._roster.get_current()
-        #move = player.get_move()
-        #self._board.apply(move)
+        
+        self._board.apply(player)
         
 
     def _do_outputs(self):
